@@ -1,7 +1,7 @@
 #!/usr/env python
 
 from rauth import OAuth2Service
-import json
+import json, argparse 
 
 
 service = OAuth2Service(
@@ -31,14 +31,10 @@ vehicles = my_session.get(url).json()['response'][0]
 
 v_1 = vehicles['id_s'] #safe vehicle id for further actions 
 
-###################
 ####Preperation####
-###################
 my_session.post('https://owner-api.teslamotors.com/api/1/vehicles/' + v_1 + '/wake_up')  #Wakeup car for awaiting commands :)
 
-###################
 #####GET (Read only)
-###################
 #
 #getcommand = input("enter get request:")
 #getcommandurl='https://owner-api.teslamotors.com/api/1/vehicles/' + v_1 + '/%s' %(getcommand)
@@ -46,9 +42,7 @@ my_session.post('https://owner-api.teslamotors.com/api/1/vehicles/' + v_1 + '/wa
 #print('###Requested get command was %s' %(getcommandurl))
 #print(my_session.get(getcommandurl).json())
 #
-###################
 ####### POST (Writing permissions)
-###################
 postcommand = input("enter post request:")
 postcommandurl='https://owner-api.teslamotors.com/api/1/vehicles/' + v_1 + '/%s' %(postcommand)
 print('###Requested post command was %s' %(postcommandurl))
